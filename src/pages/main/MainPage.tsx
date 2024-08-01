@@ -38,7 +38,6 @@ export const MainPage = () => {
                     srcImage={product.image} 
                     altImage={product.description}
                   ></ImageComponent>
-                  {/* <img src={product.image} alt={product.description} /> */}
                 </div>
 
                 <p className="name">{product.title}</p>

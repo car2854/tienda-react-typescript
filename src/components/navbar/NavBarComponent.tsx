@@ -4,6 +4,7 @@ import { useGetCategoriesQuery } from '../../store/api';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useEffect, useState } from 'react';
+import { LoadingComponent } from '../loading/LoadingComponent';
 
 interface QueryParams {
   [key: string]: string | undefined;
@@ -29,7 +30,7 @@ export const NavBarComponent = () => {
   }, [cart])
   
 
-  const {data: categories = []} = useGetCategoriesQuery();
+  const {data: categories = [], isLoading} = useGetCategoriesQuery();
   const location = useLocation();
   const isActive = (path: string, searchParams: QueryParams = {}) => {
     const queryParams = getQueryParams(location.search);
@@ -57,16 +58,19 @@ export const NavBarComponent = () => {
           </ul>
         </div>
         <div className="nav-categories">
-          <ul>
-            <Link key={-1} to={`/main?category=all`} className={isActive('/main', { category: 'all' }) ? 'no-underline active' : 'no-underline'}><li>all</li></Link>
-            {categories.map((category: string, index:number) => (
-              <Link 
-                key={index} 
-                to={`/main?category=${category}`} 
-                className={isActive('/main', { category: category }) ? 'no-underline active' : 'no-underline'}
-              ><li>{category}</li></Link>
-            ))}
-          </ul>
+          {isLoading && <div className="loading"><LoadingComponent></LoadingComponent></div>}
+          {!isLoading && 
+            <ul>
+              <Link key={-1} to={`/main?category=all`} className={isActive('/main', { category: 'all' }) ? 'no-underline active' : 'no-underline'}><li>all</li></Link>
+              {categories.map((category: string, index:number) => (
+                <Link 
+                  key={index} 
+                  to={`/main?category=${category}`} 
+                  className={isActive('/main', { category: category }) ? 'no-underline active' : 'no-underline'}
+                ><li>{category}</li></Link>
+              ))}
+            </ul>
+          }
         </div>
 
       </nav>

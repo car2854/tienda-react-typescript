@@ -5,8 +5,6 @@
 .main .products{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
   gap: 28px;
 }
 
@@ -27,4 +25,16 @@
 .main .products .product .price{
   font-size: 20px;
   font-weight: bold;
+}
+
+@media (max-width: 1335px) {
+  .main .products{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .main .products{
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

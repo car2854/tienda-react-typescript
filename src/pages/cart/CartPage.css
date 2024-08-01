@@ -75,8 +75,29 @@
   color: white;
   padding-block: 8px;
   border-radius: 8px;
+  margin-top: 20px;
 }
 
-.hola{
+.price-detail{
   justify-self: end;
+}
+
+@media (max-width: 1150px) {
+  .cart{
+    display: flex;
+    flex-direction: column-reverse;
+    grid-template-columns: 1fr;
+  }
+
+  .cart .price-cart button{
+    align-self: flex-end;
+    width: 300px;
+  }
+}
+
+@media (max-width: 500px) {
+  .cart .price-cart button{
+    align-self: flex-end;
+    width: 100%;
+  }
 }

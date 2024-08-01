@@ -75,15 +75,16 @@ export const CartPage = () => {
       <div className="price-cart">
         <div className="detail-price">
           <p>Precio total:</p>
-          <p className="hola">${totalPrice}</p>
+          <p className="price-detail">${totalPrice}</p>
           <p>Impuestos:</p>
-          <p className="hola">$0</p>
+          <p className="price-detail">$0</p>
           <p>Uso del servicio:</p>
-          <p className="hola">$0</p>
+          <p className="price-detail">$0</p>
           <p>Total</p>
-          <p className="hola">${totalPrice}</p>
+          <p className="price-detail">${totalPrice}</p>
         </div>
         <button>Comprar</button>
+        <hr />
       </div>
 
     </div>

@@ -71,3 +71,26 @@
   border-radius: 8px;
   justify-self: end;
 }
+
+@media (max-width: 1250px) {
+  .product{
+    grid-template-columns: 39% 59%;
+  }
+}
+
+@media (max-width: 900px) {
+  .product{
+    grid-template-columns: 1fr;
+  }
+
+  .product .product-images .selected-image{
+    height: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .product .product-images .selected-image{
+    height: 80%;
+  }
+}
