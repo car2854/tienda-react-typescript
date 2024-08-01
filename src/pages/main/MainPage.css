@@ -1,0 +1,30 @@
+.main{
+  min-height: 300px;
+}
+
+.main .products{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  gap: 28px;
+}
+
+.main .products .product{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.main .products .product .image{
+  width: 400px;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.main .products .product .price{
+  font-size: 20px;
+  font-weight: bold;
+}

@@ -1,0 +1,82 @@
+.cart{
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 12px;
+}
+
+.cart .detail-cart{
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cart .detail-cart .remove{
+  position: relative;
+  left: 98%;
+  top: 10px;
+  font-size: 28px;
+}
+
+.cart .detail-cart .product{
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.cart .detail-cart .product .image{
+  /* width: 200px; */
+  height: 210px;
+}
+
+.cart .detail-cart .product .description{
+  display: flex;
+  flex-direction: column;
+}
+
+.cart .detail-cart .product .amount{
+  display: flex;
+  gap: 3px;
+}
+
+.cart .detail-cart .product .amount strong{
+  margin-right: 3px;
+}
+
+.cart .detail-cart .product .amount button{
+  background-color: #010101;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.cart .detail-cart .product .description .product-description{
+  height: 100%;
+}
+
+.cart .detail-cart .product .description .price{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart .price-cart{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-inline: 20px;
+}
+
+.cart .price-cart .detail-price{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cart .price-cart button{
+  background-color: #010101;
+  color: white;
+  padding-block: 8px;
+  border-radius: 8px;
+}
+
+.hola{
+  justify-self: end;
+}
