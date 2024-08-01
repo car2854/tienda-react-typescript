@@ -23,10 +23,10 @@ export const NavBarComponent = () => {
 
   const cart = useSelector((state: RootState) => state.cart.value);
 
-  const [totalAmountCart, setTotalAmountCart] = useState(0);
+  const [totalQuantityCart, setTotalQuantityCart] = useState(0);
 
   useEffect(() => {
-    setTotalAmountCart(cart.reduce((sum, cart) => sum + cart.amount, 0));  
+    setTotalQuantityCart(cart.reduce((sum, cart) => sum + cart.quantity, 0));  
   }, [cart])
   
 
@@ -40,18 +40,19 @@ export const NavBarComponent = () => {
   return (
     <>
       <nav>
-
         <div className="nav-header">
-          <h2>Icono</h2>
+          <div className="logo">
+            <img src="/react.svg" alt="" />
+          </div>
           <div className="form-group w-3p">
             <i className="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder='Buscar'/>
+            <input type="text" placeholder='Search'/>
           </div>
           <ul>
             <li>
               <Link to={'/cart'}>
                 <i className="fa-solid fa-cart-shopping">
-                  {totalAmountCart > 0 && <div className="badge"><p>{totalAmountCart}</p></div>}
+                  {totalQuantityCart > 0 && <div className="badge"><p>{totalQuantityCart}</p></div>}
                 </i>
               </Link>
             </li>

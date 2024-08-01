@@ -38,3 +38,13 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+@media (max-width: 600px) {
+  .main .products{
+    display: flex;
+    flex-direction: column;
+  }
+  .main .products .product .image{
+    width: 100%;
+    height: 300px;
+  }
+}

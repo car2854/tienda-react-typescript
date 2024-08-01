@@ -1,4 +1,4 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import "./ProductPage.css";
 import { useGetProductQuery } from "../../store/api";
 import { LoadingComponent } from "../../components";
@@ -13,8 +13,10 @@ export const ProductPage = () => {
 
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   const [starts, setStarts] = useState<number[]>([]); // 0 none | 1 half | 2 full
-  const [amount, setAmount] = useState("1");
+  const [quantity, setQuantity] = useState("1");
 
   const {data: product, isFetching} = useGetProductQuery({productId: id}, {});
 
@@ -42,20 +44,22 @@ export const ProductPage = () => {
 
     event.preventDefault();
     
-    const value = parseInt(amount);
+    
+    const value = parseInt(quantity);
     if (isNaN(value)){
       return;
     }
-    
+
     dispatch(addCart(
       {
-        amount: value,
+        quantity: value,
         product: product
       }
     ));
     dispatch(
-      showAlertThunk('Se agrego un nuevo producto al carrito!!')
+      showAlertThunk('A new product has been added to the cart!')
     );
+    navigate('/main?category=all');
   }
   
   return (
@@ -74,6 +78,7 @@ export const ProductPage = () => {
               ></ImageComponent>
               
             </div>
+            {/* Aqui es una lista de las imagenes pero como esta api solo tiene una imagen, no era necesario */}
             {/* <div className="list-images">
               <div className="image">
                 <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9f2434d540c34ca882440599e39aac53_9366/LUFT_PACE_SHOES_Turquoise_IQ9069_01_standard.jpg" alt="" />
@@ -101,10 +106,10 @@ export const ProductPage = () => {
                 <div className="form-group">
                   <input 
                     type="number" 
-                    placeholder="Cantidad"
-                    value={amount}
-                    name="amount"
-                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="Quantity"
+                    value={quantity}
+                    name="quantity"
+                    onChange={(e) => setQuantity(e.target.value)}
                   />
                 </div>
                 <button type="submit">Agregar</button>

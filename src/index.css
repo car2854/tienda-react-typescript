@@ -67,9 +67,14 @@ p{
 }
 
 .alert{
+  border-radius: 12px;
   position: relative;
   margin-bottom: 25px;
   background-color: #FFF3CD;
   padding-inline: 20px;
   padding-block: 20px;
+}
+
+.logo{
+  width: 37px;
 }

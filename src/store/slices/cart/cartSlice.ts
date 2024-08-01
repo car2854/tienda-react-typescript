@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { ProductModel } from '../../../models/productModel'
 
 export interface CartState {
-  amount: number,
+  quantity: number,
   product: ProductModel
 }
 
@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
       if (cart){
         state.value = state.value.map((cart:CartState) => {
           if (cart.product.id === action.payload.product.id){
-            cart.amount = action.payload.amount
+            cart.quantity = action.payload.quantity
           }
           return cart;
         });
@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
       if (cart){
         state.value = state.value.map((cart:CartState) => {
           if (cart.product.id === action.payload.product.id){
-            cart.amount = action.payload.amount
+            cart.quantity = action.payload.quantity
           }
           return cart;
         });
