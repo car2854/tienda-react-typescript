@@ -73,7 +73,7 @@ export const NavBarComponent = () => {
 
       <hr />
 
-      <a href="https://github.com/uzakari/openapi.presentation" target="_blank">
+      <a href="https://github.com/car2854/tienda-react-typescript.git" target="_blank">
         <div className="github">
           <i className="fa-brands fa-github"></i>
         </div>
