@@ -73,9 +73,6 @@ export const NavBarComponent = () => {
 
       <hr />
 
-      <div className="alert">Se agrego correctamente</div>
-
-      
       <a href="https://github.com/uzakari/openapi.presentation" target="_blank">
         <div className="github">
           <i className="fa-brands fa-github"></i>

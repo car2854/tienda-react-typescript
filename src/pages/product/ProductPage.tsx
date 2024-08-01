@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { ImageComponent } from "../../components/image/ImageComponent";
 import { useDispatch } from "react-redux";
 import { addCart } from "../../store/slices/cart";
+import { showAlertThunk } from "../../store/slices/alert";
+import { AppDispatch } from "../../store";
 
 export const ProductPage = () => {
 
@@ -16,7 +18,7 @@ export const ProductPage = () => {
 
   const {data: product, isFetching} = useGetProductQuery({productId: id}, {});
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (product){
@@ -44,13 +46,16 @@ export const ProductPage = () => {
     if (isNaN(value)){
       return;
     }
-
+    
     dispatch(addCart(
       {
         amount: value,
         product: product
       }
     ));
+    dispatch(
+      showAlertThunk('Se agrego un nuevo producto al carrito!!')
+    );
   }
   
   return (
