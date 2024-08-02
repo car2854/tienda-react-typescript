@@ -1,10 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
 import './NavBarComponent.css';
 import { useGetCategoriesQuery } from '../../store/api';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
 import { LoadingComponent } from '../loading/LoadingComponent';
+import { useEffect, useRef, useState } from 'react';
+import { showAlertThunk } from '../../store/slices/alert';
 
 interface QueryParams {
   [key: string]: string | undefined;
@@ -21,7 +22,10 @@ function getQueryParams(queryString: string): QueryParams {
 
 export const NavBarComponent = () => {
 
+  const dispatch = useDispatch<AppDispatch>();
+
   const cart = useSelector((state: RootState) => state.cart.value);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [totalQuantityCart, setTotalQuantityCart] = useState(0);
 
@@ -37,6 +41,21 @@ export const NavBarComponent = () => {
     return location.pathname === path && Object.entries(searchParams).every(([key, value]) => queryParams[key] === value);
   };
 
+  const [product, setProduct] = useState("");
+
+  const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
+    setProduct(event.currentTarget.value);
+    dispatch(
+      showAlertThunk(`La API de Fakestoreapi no tiene un buscador por query. valor: ${event.currentTarget.value}`, 3000)
+    );
+  }
+  
+  const handleFocus = () => {
+    if (inputRef.current) {
+      inputRef.current.select();
+    }
+  };
+
   return (
     <>
       <nav>
@@ -44,9 +63,18 @@ export const NavBarComponent = () => {
           <div className="logo">
             <img src="/react.svg" alt="" />
           </div>
-          <div className="form-group w-3p">
-            <i className="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder='Search'/>
+          <div className="w-3p">
+            <div className="form-group">
+              <i className="fa-solid fa-magnifying-glass"></i>
+              <input 
+                ref={inputRef}
+                type="text" 
+                placeholder="Search" 
+                onInput={handleInput}
+                onFocus={handleFocus}
+              />
+            </div>
+            
           </div>
           <ul>
             <li>

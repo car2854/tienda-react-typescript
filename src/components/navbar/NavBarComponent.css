@@ -78,3 +78,22 @@ hr{
 .github:hover{
   transform: scale(1.1);
 }
+
+.cutocomplete-list{
+  position: absolute;
+  width: 27.5%;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.26);
+  padding: 8px;
+  border-radius: 12px;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.cutocomplete-list p{
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}

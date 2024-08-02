@@ -84,3 +84,7 @@ p{
 .logo{
   width: 37px;
 }
+
+input{
+  width: 100%;
+}
