@@ -30,7 +30,7 @@ export const NavBarComponent = () => {
   }, [cart])
   
 
-  const {data: categories = [], isLoading} = useGetCategoriesQuery();
+  const {data: categories = [], isLoading, isError} = useGetCategoriesQuery();
   const location = useLocation();
   const isActive = (path: string, searchParams: QueryParams = {}) => {
     const queryParams = getQueryParams(location.search);
@@ -60,7 +60,8 @@ export const NavBarComponent = () => {
         </div>
         <div className="nav-categories">
           {isLoading && <div className="loading"><LoadingComponent></LoadingComponent></div>}
-          {!isLoading && 
+          
+          {(!isLoading && !isError) && 
             <ul>
               <Link key={-1} to={`/main?category=all`} className={isActive('/main', { category: 'all' }) ? 'no-underline active' : 'no-underline'}><li>all</li></Link>
               {categories.map((category: string, index:number) => (
@@ -75,7 +76,7 @@ export const NavBarComponent = () => {
         </div>
 
       </nav>
-
+        
       <hr />
 
       <a href="https://github.com/car2854/tienda-react-typescript.git" target="_blank">

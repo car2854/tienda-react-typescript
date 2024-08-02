@@ -5,6 +5,7 @@ export const fakeStoreApi : any = createApi({
   reducerPath: 'fakeStore',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://fakestoreapi.com'
+    // baseUrl: 'https://fakestoreapia.com'
   }),
   endpoints: (builder) => ({
     getProducts: builder.query({

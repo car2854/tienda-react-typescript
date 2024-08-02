@@ -1,13 +1,14 @@
 import { useNavigate, useParams } from "react-router"
 import "./ProductPage.css";
 import { useGetProductQuery } from "../../store/api";
-import { LoadingComponent } from "../../components";
+import { ErrorComponent, LoadingComponent } from "../../components";
 import { useEffect, useState } from "react";
 import { ImageComponent } from "../../components/image/ImageComponent";
 import { useDispatch } from "react-redux";
 import { addCart } from "../../store/slices/cart";
 import { showAlertThunk } from "../../store/slices/alert";
 import { AppDispatch } from "../../store";
+import { messageErrorHelper } from "../../helpers";
 
 export const ProductPage = () => {
 
@@ -18,7 +19,7 @@ export const ProductPage = () => {
   const [starts, setStarts] = useState<number[]>([]); // 0 none | 1 half | 2 full
   const [quantity, setQuantity] = useState("1");
 
-  const {data: product, isFetching} = useGetProductQuery({productId: id}, {});
+  const {data: product, isFetching, isError, error} = useGetProductQuery({productId: id}, {});
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -67,7 +68,7 @@ export const ProductPage = () => {
     <>
 
       {isFetching && <div className="loading"><LoadingComponent /></div>}
-      {!isFetching && 
+      {(!isFetching && !isError) && 
         <div className="product">
           <div className="product-images">
             <div className="selected-image">
@@ -118,6 +119,8 @@ export const ProductPage = () => {
           </div>
         </div>
       }
+
+      {isError && <ErrorComponent message={messageErrorHelper(error)}></ErrorComponent>}
 
 
     </>
