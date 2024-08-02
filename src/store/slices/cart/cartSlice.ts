@@ -50,9 +50,13 @@ export const cartSlice = createSlice({
       }
     },
 
+    clearList: (state) => {
+      state.value = [];
+    }
+
   },
 })
 
-export const { addCart, removeProduct, updateProduct } = cartSlice.actions
+export const { clearList, addCart, removeProduct, updateProduct } = cartSlice.actions
 
 export default cartSlice.reducer

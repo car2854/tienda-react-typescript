@@ -1,19 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import { ImageComponent } from '../../components/image/ImageComponent';
 import { useEffect, useState } from 'react';
 import money from 'money-math';
-import { removeProduct, updateProduct } from '../../store/slices/cart';
+import { clearList, removeProduct, updateProduct } from '../../store/slices/cart';
 import { ErrorComponent } from '../../components';
 import './CartPage.css';
 import { ProductModel } from '../../models/productModel';
+import { useNavigate } from 'react-router';
+import { showAlertThunk } from '../../store/slices/alert';
 
 export const CartPage = () => {
 
   const cart = useSelector((state: RootState) => state.cart.value);
   const [totalPrice, setTotalPrice] = useState("0.00");
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTotalPrice(() => {
@@ -35,6 +38,25 @@ export const CartPage = () => {
         }
       ));
     }
+
+  }
+
+
+  const [loadingPurchase, setLoadingPurchase] = useState(false);
+  const purchase = () => {
+
+    setLoadingPurchase(true);
+    setTimeout(() => {
+      setLoadingPurchase(false);
+
+      dispatch(
+        showAlertThunk('Successful purchase!')
+      );
+      dispatch(
+        clearList()
+      )
+      navigate('/main?category=all');
+    }, 2000);
 
   }
 
@@ -98,7 +120,8 @@ export const CartPage = () => {
               <p>Total</p>
               <p className="price-detail">${totalPrice}</p>
             </div>
-            <button>Comprar</button>
+            <button onClick={purchase} disabled={loadingPurchase}>{ 
+              loadingPurchase ? 'Buying...' : 'Buy'}</button>
             <hr />
           </div>
             
