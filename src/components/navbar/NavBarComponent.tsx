@@ -45,6 +45,7 @@ export const NavBarComponent = () => {
 
   const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
     setProduct(event.currentTarget.value);
+    console.log(product);
     dispatch(
       showAlertThunk(`La API de Fakestoreapi no tiene un buscador por query. valor: ${event.currentTarget.value}`, 3000)
     );
