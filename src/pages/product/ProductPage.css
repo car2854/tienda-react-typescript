@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 49% 49%;
   gap: 28px;
+  margin-bottom: 90px;
 }
 
 .product .product-images{
@@ -63,7 +64,11 @@
   gap: 12px;
 } 
 
-.product .product-description .add-product button{
+.product .product-description .add-product .input{
+  width: 100%;
+} 
+
+.product .product-description .add-product form button{
   width: 100%;
   background-color: #010101;
   color: white;
@@ -93,4 +98,11 @@
   .product .product-images .selected-image{
     height: 80%;
   }
+}
+
+@media (max-width: 400px) {
+  .product .product-description .add-product form{
+    display: flex;
+    flex-direction: column;
+  } 
 }

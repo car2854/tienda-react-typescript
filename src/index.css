@@ -43,6 +43,7 @@ i{
   background-color: #F4F4F4;
   padding: 12px;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .form-group input{

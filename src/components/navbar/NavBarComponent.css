@@ -35,10 +35,11 @@ nav .nav-header button i{
 nav .nav-categories ul{
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+  padding-block: 18px;
 }
 
 nav .nav-categories ul li{
-  padding-block: 18px;
 }
 
 .active{
