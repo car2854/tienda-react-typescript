@@ -47,7 +47,7 @@ export const ProductPage = () => {
     
     
     const value = parseInt(quantity);
-    if (isNaN(value)){
+    if (isNaN(value) || value < 1){
       return;
     }
 
